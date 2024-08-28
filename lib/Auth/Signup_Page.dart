@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:p1/Widgets/Custom_Button.dart';
 import 'package:p1/Widgets/Custom_Textfield.dart';
+import 'package:p1/Widgets/Image_Urls.dart';
+import 'package:p1/Widgets/Logo_Icon.dart';
+import 'package:p1/Widgets/Title_Text.dart';
 import 'package:p1/utils/AG_Container.dart';
-import 'package:p1/utils/Custom_Button.dart';
+
 import 'package:p1/utils/Custom_Dividers.dart';
 import 'package:p1/utils/Colors.dart';
-import 'package:p1/utils/Image_Urls.dart';
-import 'package:p1/utils/Logo_Icon.dart';
+
 import 'package:p1/utils/Not_Member.dart';
-import 'package:p1/utils/Title_Text.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});

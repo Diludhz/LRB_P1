@@ -7,5 +7,5 @@ class AppColors {
   static const Color darkstheme = Colors.black;
   static const Color unselectedcolor = Color.fromARGB(255, 75, 87, 135);
   static const Color greylight = Color.fromARGB(255, 191, 185, 185);
-  static const Color lightmode = Color.fromARGB(255, 249, 237, 211);
+  static const Color lightmode = Color.fromARGB(255, 254, 248, 228);
 }

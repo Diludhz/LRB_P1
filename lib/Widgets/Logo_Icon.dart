@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:p1/utils/Image_Urls.dart';
+import 'package:p1/Widgets/Image_Urls.dart';
 
 floatingActionButton(context) {
   return Column(

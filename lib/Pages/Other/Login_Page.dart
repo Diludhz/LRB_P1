@@ -11,7 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  int _currentIndex = 0; // Track the selected tab index
+  int _currentIndex = 0;
 
   void _onTabSelected(int index) {
     setState(() {
@@ -31,45 +31,61 @@ class _LoginPageState extends State<LoginPage> {
             child: Text(
               "Welcome",
               style: GoogleFonts.almarai(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w700,
-                  color: Theme.of(context).colorScheme.onSecondaryContainer),
+                fontSize: 28,
+                fontWeight: FontWeight.w700,
+                color: Theme.of(context).colorScheme.onSecondaryContainer,
+              ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 27),
+            padding: const EdgeInsets.only(left: 27, top: 10),
             child: Row(
               children: [
                 GestureDetector(
                   onTap: () => _onTabSelected(0),
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Email',
-                      style: TextStyle(
-                        color: _currentIndex == 0
-                            ? Theme.of(context).colorScheme.surface
-                            : Theme.of(context).colorScheme.onSurface,
-                        fontWeight: FontWeight.w600,
+                  child: Column(
+                    children: [
+                      Text(
+                        'Email',
+                        style: TextStyle(
+                          color: _currentIndex == 0
+                              ? Theme.of(context).colorScheme.surface
+                              : Theme.of(context).colorScheme.onSurface,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                    ),
+                      const SizedBox(height: 5),
+                      if (_currentIndex == 0)
+                        Container(
+                          width: 30,
+                          height: 2,
+                          color: Theme.of(context).colorScheme.surface,
+                        ),
+                    ],
                   ),
                 ),
                 const SizedBox(width: 15),
                 GestureDetector(
                   onTap: () => _onTabSelected(1),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 15),
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Phone',
-                      style: TextStyle(
-                        color: _currentIndex == 1
-                            ? Theme.of(context).colorScheme.surface
-                            : Theme.of(context).colorScheme.onSurface,
-                        fontWeight: FontWeight.w600,
+                  child: Column(
+                    children: [
+                      Text(
+                        'Phone',
+                        style: TextStyle(
+                          color: _currentIndex == 1
+                              ? Theme.of(context).colorScheme.surface
+                              : Theme.of(context).colorScheme.onSurface,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                    ),
+                      const SizedBox(height: 5),
+                      if (_currentIndex == 1)
+                        Container(
+                          width: 30,
+                          height: 2,
+                          color: Theme.of(context).colorScheme.surface,
+                        ),
+                    ],
                   ),
                 ),
               ],

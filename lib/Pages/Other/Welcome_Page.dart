@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:p1/Widgets/Logo_Icon.dart';
 import 'package:p1/utils/Colors.dart';
-import 'package:p1/utils/Logo_Icon.dart';
-
 import 'package:p1/Pages/Other/Login_Page.dart';
 import 'package:p1/Auth/Signup_Page.dart';
 
@@ -38,9 +37,7 @@ class _WelcomePageState extends State<WelcomePage>
                 decoration: BoxDecoration(
                   boxShadow: const [
                     BoxShadow(
-                      offset: Offset(0, 2),
-                      blurRadius: 1,
-                      blurStyle: BlurStyle.outer,
+                      offset: Offset(0, 1),
                       color: AppColors.greylight,
                       spreadRadius: 1,
                     )
@@ -52,10 +49,10 @@ class _WelcomePageState extends State<WelcomePage>
                   dividerColor: Colors.transparent,
                   indicatorSize: TabBarIndicatorSize.tab,
                   indicatorPadding: const EdgeInsets.only(
-                    top: 8,
+                    top: 6,
                     left: 4,
                     right: 4,
-                    bottom: 8,
+                    bottom: 3,
                   ),
                   indicatorColor: Colors.transparent,
                   controller: _tabController,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:p1/utils/Image_Urls.dart';
+import 'package:p1/Utils/Colors.dart';
+import 'package:p1/Widgets/Image_Urls.dart';
 
 Widget socialMediaContainer() {
   return Row(
@@ -18,6 +19,9 @@ Widget _buildSocialMediaButton(String assetPath) {
     height: 60,
     decoration: BoxDecoration(
       color: Colors.white,
+      boxShadow: const [
+        BoxShadow(offset: Offset(0, 1), color: AppColors.greylight)
+      ],
       borderRadius: BorderRadius.circular(8),
     ),
     child: Image.asset(assetPath),
