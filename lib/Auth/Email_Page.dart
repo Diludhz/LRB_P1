@@ -1,0 +1,129 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:p1/Widgets/Custom_Textfield.dart';
+import 'package:p1/utils/AG_Container.dart';
+import 'package:p1/utils/Custom_Button.dart';
+import 'package:p1/utils/Custom_Dividers.dart';
+import 'package:p1/utils/Colors.dart';
+import 'package:p1/utils/Image_Urls.dart';
+import 'package:p1/utils/Not_Member.dart';
+
+class EmailPage extends StatefulWidget {
+  const EmailPage({super.key});
+
+  @override
+  _EmailPageState createState() => _EmailPageState();
+}
+
+class _EmailPageState extends State<EmailPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  void _login() {
+    final email = _emailController.text.trim();
+    final password = _passwordController.text.trim();
+
+    // Replace this with your own authentication logic
+    if (email == "test@example.com" && password == "password123") {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Logged in successfully!'),
+          backgroundColor:
+              AppColors.greentext, // Update to a proper color if needed
+        ),
+      );
+      // Navigate to Homepage after successful login
+      // Navigator.pushReplacement(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => const Homepage()),
+      // );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Login failed. Incorrect email or password.'),
+          backgroundColor: AppColors.greentext,
+        ),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 16, right: 16, left: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                customTextField(
+                  obscureText: false,
+                  assets1: AppIcons.emailIcon,
+                  hintText: "Enter email",
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  context: context,
+                ),
+                const SizedBox(height: 16),
+                customTextField(
+                  obscureText: true,
+                  hintText: "Enter password",
+                  controller: _passwordController,
+                  keyboardType: TextInputType.text,
+                  assets1: AppIcons.lockIcon,
+                  assets2: AppIcons.viewpassIcon,
+                  context: context,
+                ),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15),
+                  child: _buildForgotPasswordButton(),
+                ),
+                const SizedBox(height: 10),
+                eButton(
+                    text: "Login",
+                    onTap: () {
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => const Homepage()));
+                    },
+                    context: context),
+                const SizedBox(height: 10),
+                customDivider(),
+                const SizedBox(height: 20),
+                socialMediaContainer(),
+                const SizedBox(height: 15),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: notaMemberText(
+                    text: "Signup",
+                    onPressed: () {},
+                    context: context,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildForgotPasswordButton() {
+    return TextButton(
+      onPressed: () {
+        // Navigate to forgot password screen or show dialog
+      },
+      child: Text(
+        'Forgot Password?',
+        style: GoogleFonts.almarai(
+            fontSize: 15,
+            fontWeight: FontWeight.w400,
+            color: AppColors.greentext),
+      ),
+    );
+  }
+}
