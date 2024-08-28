@@ -16,7 +16,7 @@ class PhonePage extends StatefulWidget {
 class _PhonePageState extends State<PhonePage> {
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _otpController = TextEditingController();
-  bool showOTPBoxes = false; // Track whether OTP boxes should be shown
+  bool showOTPBoxes = false;
 
   void _sendOTP() {
     setState(() {
@@ -35,7 +35,6 @@ class _PhonePageState extends State<PhonePage> {
   }
 
   void _verifyOTP() {
-    // Simulate OTP verification
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
@@ -139,7 +138,7 @@ class _PhonePageState extends State<PhonePage> {
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: notaMemberText(
-                  text: "Signup now",
+                  text: showOTPBoxes ? "Signup now" : "SignUp",
                   context: context,
                 ),
               ),

@@ -25,20 +25,13 @@ class _EmailPageState extends State<EmailPage> {
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
 
-    // Replace this with your own authentication logic
     if (email == "test@example.com" && password == "password123") {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Logged in successfully!'),
-          backgroundColor:
-              AppColors.greentext, // Update to a proper color if needed
+          backgroundColor: AppColors.greentext,
         ),
       );
-      // Navigate to Homepage after successful login
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => const Homepage()),
-      // );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -84,15 +77,7 @@ class _EmailPageState extends State<EmailPage> {
                   child: _buildForgotPasswordButton(),
                 ),
                 const SizedBox(height: 10),
-                eButton(
-                    text: "Login",
-                    onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => const Homepage()));
-                    },
-                    context: context),
+                eButton(text: "Login", onTap: () {}, context: context),
                 const SizedBox(height: 10),
                 customDivider(),
                 const SizedBox(height: 20),
@@ -116,9 +101,7 @@ class _EmailPageState extends State<EmailPage> {
 
   Widget _buildForgotPasswordButton() {
     return TextButton(
-      onPressed: () {
-        // Navigate to forgot password screen or show dialog
-      },
+      onPressed: () {},
       child: Text(
         'Forgot Password?',
         style: GoogleFonts.almarai(

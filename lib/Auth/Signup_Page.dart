@@ -26,8 +26,6 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController _phoneController = TextEditingController();
 
   void _signUp() {
-    // Replace this with your sign-up logic or form validation.
-    // For now, it shows a success message.
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
           content: Text('Successfully Signed Up!'),

@@ -10,46 +10,58 @@ Widget customTextField({
   TextEditingController? controller,
   TextInputType keyboardType = TextInputType.text,
   String? assets2,
-  String? Function(String?)? validator, // Added validator parameter
+  String? Function(String?)? validator,
 }) {
   return Padding(
     padding: const EdgeInsets.only(left: 10, right: 10),
-    child: TextFormField(
-      keyboardType: keyboardType,
-      obscureText: obscureText,
-      controller: controller,
-      validator: validator, // Assign the validator function
-      decoration: InputDecoration(
-        fillColor: AppColors.purewhite,
-        filled: true,
-        hintText: hintText,
-        hintStyle: GoogleFonts.almarai(
-          fontSize: 15,
-          fontWeight: FontWeight.w700,
-          color: Theme.of(context).colorScheme.onPrimary,
-        ),
-        prefixIcon: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Image.asset(
-            assets1,
-            width: 24,
-            height: 24,
+    child: Container(
+      decoration: const BoxDecoration(
+        boxShadow: [
+          BoxShadow(
             color: AppColors.greylight,
+            offset: Offset(0, 2),
           ),
-        ),
-        suffixIcon: assets2 != null
-            ? Padding(
-                padding: const EdgeInsets.only(right: 5),
-                child: Image.asset(
-                  assets2,
-                  width: 24,
-                  height: 24,
-                  color: AppColors.greylight,
-                ),
-              )
-            : null,
-        border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
+        ],
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+      ),
+      child: TextFormField(
+        keyboardType: keyboardType,
+        obscureText: obscureText,
+        controller: controller,
+        validator: validator,
+        decoration: InputDecoration(
+          fillColor: AppColors.purewhite,
+          filled: true,
+          hintText: hintText,
+          hintStyle: GoogleFonts.almarai(
+            fontSize: 15,
+            fontWeight: FontWeight.w700,
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+          prefixIcon: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Image.asset(
+              assets1,
+              width: 24,
+              height: 24,
+              color: AppColors.greylight,
+            ),
+          ),
+          suffixIcon: assets2 != null
+              ? Padding(
+                  padding: const EdgeInsets.only(right: 5),
+                  child: Image.asset(
+                    assets2,
+                    width: 24,
+                    height: 24,
+                    color: AppColors.greylight,
+                  ),
+                )
+              : null,
+          border: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            borderSide: BorderSide.none,
+          ),
         ),
       ),
     ),
