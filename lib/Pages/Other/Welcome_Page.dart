@@ -39,7 +39,6 @@ class _WelcomePageState extends State<WelcomePage>
                     BoxShadow(
                       offset: Offset(0, 1),
                       color: AppColors.greylight,
-                      spreadRadius: 1,
                     )
                   ],
                   borderRadius: const BorderRadius.all(Radius.circular(125)),

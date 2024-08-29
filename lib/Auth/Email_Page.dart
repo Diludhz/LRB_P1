@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:p1/Pages/Home_Page.dart';
 import 'package:p1/Widgets/Custom_Button.dart';
 import 'package:p1/Widgets/Custom_Textfield.dart';
 import 'package:p1/Widgets/Image_Urls.dart';
@@ -77,7 +78,13 @@ class _EmailPageState extends State<EmailPage> {
                   child: _buildForgotPasswordButton(),
                 ),
                 const SizedBox(height: 10),
-                eButton(text: "Login", onTap: () {}, context: context),
+                eButton(
+                    text: "Login",
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const HomePage()));
+                    },
+                    context: context),
                 const SizedBox(height: 10),
                 customDivider(),
                 const SizedBox(height: 20),
