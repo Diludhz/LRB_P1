@@ -13,7 +13,7 @@ Widget customTextField({
   String Function(String?)? validator,
 }) {
   return Padding(
-    padding: const EdgeInsets.only(left: 10, right: 10),
+    padding: const EdgeInsets.only(left: 15, right: 15),
     child: Container(
       decoration: const BoxDecoration(
         boxShadow: [
