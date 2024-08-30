@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:p1/Pages/Features/Dailog_DataMain.dart';
 import 'package:p1/Utils/Colors.dart';
 
 Widget knowmoreContainer(BuildContext context) {
@@ -35,7 +36,14 @@ Widget knowmoreContainer(BuildContext context) {
             height: 10,
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return const CustomDialogBox();
+                },
+              );
+            },
             child: Container(
               height: 20,
               width: 140,

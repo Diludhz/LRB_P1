@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import 'package:p1/Utils/Colors.dart';
 import 'package:p1/Widgets/Image_Urls.dart';
 
@@ -72,24 +73,28 @@ Widget customTopContainer(BuildContext context) {
                     ),
                   ],
                 ),
-                Container(
-                  height: 38,
-                  width: 38,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).colorScheme.background,
-                    boxShadow: const [
-                      BoxShadow(
-                        offset: Offset(0, 1),
-                        color: AppColors.greylight,
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    height: 38,
+                    width: 38,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Theme.of(context).colorScheme.background,
+                      boxShadow: const [
+                        BoxShadow(
+                          offset: Offset(0, 1),
+                          color: AppColors.greylight,
+                        ),
+                      ],
+                    ),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Icon(
+                        Icons.notifications_none,
+                        color:
+                            Theme.of(context).colorScheme.onSecondaryContainer,
                       ),
-                    ],
-                  ),
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Icon(
-                      Icons.notifications_none,
-                      color: Theme.of(context).colorScheme.onSecondaryContainer,
                     ),
                   ),
                 ),

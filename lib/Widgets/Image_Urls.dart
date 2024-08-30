@@ -15,6 +15,10 @@ class AppIcons {
   static const String handIcon = "assets/icons/ic_hand.png";
   static const String fireIcon = "assets/icons/ic_fire.png";
   static const String incomeIcon = "assets/icons/ic_income.png";
+  static const String dropdownIcon = "assets/icons/ic_dropdown.png";
+  static const String browseIcon = "assets/icons/ic_browse.png";
+  static const String selfeIcon = "assets/icons/ic_selfie.png";
+  static const String dividerIcon = "assets/icons/ic_divider.png";
 }
 
 class AppImages {

@@ -10,7 +10,7 @@ Widget customTextField({
   TextEditingController? controller,
   TextInputType keyboardType = TextInputType.text,
   String? assets2,
-  String? Function(String?)? validator,
+  String Function(String?)? validator,
 }) {
   return Padding(
     padding: const EdgeInsets.only(left: 10, right: 10),
@@ -28,7 +28,13 @@ Widget customTextField({
         keyboardType: keyboardType,
         obscureText: obscureText,
         controller: controller,
-        validator: validator,
+        validator: validator ??
+            (value) {
+              if (value == null || value.isEmpty) {
+                return 'This field is required';
+              }
+              return null;
+            },
         decoration: InputDecoration(
           fillColor: AppColors.purewhite,
           filled: true,
@@ -36,17 +42,19 @@ Widget customTextField({
           hintStyle: GoogleFonts.almarai(
             fontSize: 15,
             fontWeight: FontWeight.w700,
-            color: Theme.of(context).colorScheme.onPrimary,
+            color: AppColors.greylight,
           ),
-          prefixIcon: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Image.asset(
-              assets1,
-              width: 24,
-              height: 24,
-              color: AppColors.greylight,
-            ),
-          ),
+          prefixIcon: assets1.isNotEmpty
+              ? Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Image.asset(
+                    assets1,
+                    width: 24,
+                    height: 24,
+                    color: AppColors.greylight,
+                  ),
+                )
+              : null,
           suffixIcon: assets2 != null
               ? Padding(
                   padding: const EdgeInsets.only(right: 5),
@@ -61,6 +69,14 @@ Widget customTextField({
           border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(15)),
             borderSide: BorderSide.none,
+          ),
+          errorBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            borderSide: BorderSide(color: Colors.red),
+          ),
+          focusedErrorBorder: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            borderSide: BorderSide(color: Colors.red),
           ),
         ),
       ),
