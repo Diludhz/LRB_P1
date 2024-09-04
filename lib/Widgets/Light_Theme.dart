@@ -12,4 +12,7 @@ ThemeData lightTheme = ThemeData(
         onSurface: AppColors.unselectedcolor,
         onPrimary: AppColors.darkstheme,
         onBackground: AppColors.bgcolor,
-        onSecondary: AppColors.darkstheme));
+        onSecondary: AppColors.darkstheme,
+        onTertiary: AppColors.skyblue,
+        onPrimaryContainer: AppColors.darkstheme,
+        onError: AppColors.darkstheme));

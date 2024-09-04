@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:p1/Pages/Features/Profile_Pages/Profile_Page.dart';
 import 'package:p1/Pages/Other/Booking_Page.dart';
+
 
 import 'package:p1/Utils/Colors.dart';
 import 'package:p1/Widgets/Image_Urls.dart';
@@ -79,12 +81,17 @@ Widget customnavBarItem(BuildContext context, IconData icon, String label) {
         size: 24,
         color: Theme.of(context).colorScheme.onSecondaryContainer,
       ),
-      Text(
-        label,
-        style: GoogleFonts.almarai(
-          fontSize: 11,
-          fontWeight: FontWeight.w700,
-          color: Theme.of(context).colorScheme.onSecondaryContainer,
+      GestureDetector(
+        onTap: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen()));
+        },
+        child: Text(
+          label,
+          style: GoogleFonts.almarai(
+            fontSize: 11,
+            fontWeight: FontWeight.w700,
+            color: Theme.of(context).colorScheme.onSecondaryContainer,
+          ),
         ),
       ),
     ],

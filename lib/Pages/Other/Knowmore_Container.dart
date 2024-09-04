@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:p1/Pages/Features/Dailog_DataMain.dart';
+import 'package:p1/Pages/Other/Dailog_DataMain.dart';
 import 'package:p1/Utils/Colors.dart';
 
 Widget knowmoreContainer(BuildContext context) {

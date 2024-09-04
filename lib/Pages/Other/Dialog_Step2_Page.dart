@@ -51,7 +51,7 @@ class _Step2State extends State<Step2> {
             },
             context: context,
             text: 'Agree to policy',
-            activeColor: Theme.of(context).colorScheme.onBackground,
+            activeColor: Theme.of(context).colorScheme.onSurface,
             textColor: Theme.of(context).colorScheme.onSecondary,
             fontSize: 12.0,
             fontWeight: FontWeight.bold,

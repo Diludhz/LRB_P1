@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:p1/Pages/Features/NonResident_Page.dart';
-import 'package:p1/Pages/Features/Resident_Page.dart';
+import 'package:p1/Pages/Other/NonResident_Page.dart';
+import 'package:p1/Pages/Other/Resident_Page.dart';
 import 'package:p1/Utils/Colors.dart';
 
 class CustomDialogBox extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:p1/Pages/Features/Dailog_Step1_Page.dart';
-import 'package:p1/Pages/Features/Dialog_Step2_Page.dart';
+import 'package:p1/Pages/Other/Dailog_Step1_Page.dart';
+import 'package:p1/Pages/Other/Dialog_Step2_Page.dart';
 import 'package:p1/utils/Colors.dart';
 
 class NonresidentPage extends StatefulWidget {

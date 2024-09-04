@@ -16,7 +16,7 @@ class Step1 extends StatefulWidget {
 }
 
 class _Step1State extends State<Step1> {
-  TextEditingController _dobController = TextEditingController();
+  final TextEditingController _dobController = TextEditingController();
   String? _selectedGender;
 
   @override
