@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: customfloatingActionButton(context),
+      floatingActionButton: customFloatingActionButton(context),
       bottomNavigationBar: custombottomNavigationBar(context),
     );
   }

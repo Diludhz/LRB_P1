@@ -8,7 +8,7 @@ import 'package:p1/Pages/Other/Booking_Page.dart';
 import 'package:p1/Utils/Colors.dart';
 import 'package:p1/Widgets/Image_Urls.dart';
 
-Widget customfloatingActionButton(BuildContext context) {
+Widget customFloatingActionButton(BuildContext context) {
   return Container(
     height: 90,
     width: 90,
@@ -29,17 +29,18 @@ Widget customfloatingActionButton(BuildContext context) {
       },
       backgroundColor: Theme.of(context).colorScheme.background,
       shape: const CircleBorder(),
-      child: FittedBox(
-        fit: BoxFit.cover,
+      child: ClipOval(
         child: Image.asset(
           AppIcons.logoIcon,
-          width: 90,
-          height: 93,
+          fit: BoxFit.cover,
+          width: 190,
+          height: 190,
         ),
       ),
     ),
   );
 }
+
 
 Widget custombottomNavigationBar(BuildContext context) {
   return Container(

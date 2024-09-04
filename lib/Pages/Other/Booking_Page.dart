@@ -21,7 +21,7 @@ class BookingPage extends StatelessWidget {
         ]),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: customfloatingActionButton(context),
+      floatingActionButton: customFloatingActionButton(context),
       bottomNavigationBar: custombottomNavigationBar(context),
     );
   }
