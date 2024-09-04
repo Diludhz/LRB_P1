@@ -58,88 +58,91 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildProfileCard(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 12,right: 12,bottom: 63),
-      child: Container(
-        height: 215,
-        width: 351,
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              offset: const Offset(0, 2),
-              blurRadius: 1,
-              color:Theme.of(context).colorScheme.onPrimaryContainer,
-            )
+ Widget _buildProfileCard(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.only(left: 12, right: 12, bottom: 63),
+    child: Container(
+      height: 201,
+      width: 351,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            offset: const Offset(0, 2),
+            blurRadius: 1,
+            color: Theme.of(context).colorScheme.onPrimaryContainer,
+          )
+        ],
+        borderRadius: BorderRadius.circular(30),
+        gradient: const LinearGradient(
+          colors: [
+            Color.fromARGB(225, 250, 249, 246),
+            Color.fromARGB(255, 0, 12, 44),
           ],
-          borderRadius: BorderRadius.circular(30),
-          gradient: const LinearGradient(
-            colors: [
-              Color.fromARGB(225, 250, 249, 246),
-              Color.fromARGB(255, 0, 12, 44),
-            ],
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
-          ),
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildStarRating(),
+          const SizedBox(height: 20),
+          _buildProfileDetails(),
+          const SizedBox(height: 15),
+          _buildBalanceDetails(),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget _buildStarRating() {
+  return Padding(
+    padding: const EdgeInsets.only(left: 89, top: 10, right: 100),
+    child: Container(
+      height: 25,
+      width: 192,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center, 
+        children: List.generate(5, (index) {
+          return Row(
             children: [
-              _buildStarRating(),
-              const SizedBox(height: 13),
-           
-              _buildProfileDetails(),
-            
-              _buildBalanceDetails(),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildStarRating() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 89,top: 10,right: 105,),
-      child: Container(
-        height: 25,
-        width: 151,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: List.generate(5, (index) {
-            return Image.asset(
-              index < 3 ? AppIcons.activestarIcon : AppIcons.nonactivestarIcon,
-              width: 25,
-              height: 25,
-              fit: BoxFit.cover,
-            );
-          }),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildProfileDetails() {
-    return Row(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 14,bottom: 20),
-          child: Container(
-            height: 60,
-            width: 60,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: const Color.fromARGB(255, 0, 191, 255),
-              ),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.asset(
-                AppIcons.profilesquareIcon,
+              Image.asset(
+                index < 3 ? AppIcons.activestarIcon : AppIcons.nonactivestarIcon,
+                width: 20,
+                height: 20,
                 fit: BoxFit.cover,
               ),
+              if (index < 4) 
+                const SizedBox(width: 6.29),
+            ],
+          );
+        }),
+      ),
+    ),
+  );
+}
+
+Widget _buildProfileDetails() {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 14), 
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center, 
+      children: [
+        Container(
+          height: 60,
+          width: 60,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: const Color.fromARGB(255, 0, 191, 255),
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.asset(
+              AppIcons.profilesquareIcon,
+              fit: BoxFit.cover,
             ),
           ),
         ),
@@ -172,88 +175,80 @@ class ProfileScreen extends StatelessWidget {
           ],
         ),
       ],
-    );
-  }
+    ),
+  );
+}
 
-  Widget _buildBalanceDetails() {
-    return Row(
-  
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+Widget _buildBalanceDetails() {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 25),
-              child: Text(
-                'Available Balance',
-                style: GoogleFonts.workSans(
-                  color: AppColors.bgcolor,
-                  fontSize: 14,
-                ),
+            Text(
+              'Available Balance',
+              style: GoogleFonts.workSans(
+                color: AppColors.bgcolor,
+                fontSize: 14,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 25),
-              child: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: 'AED ',
-                      style: GoogleFonts.workSans(
-                        color: Colors.yellow,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+            RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'AED ',
+                    style: GoogleFonts.workSans(
+                      color: Colors.yellow,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
-                    TextSpan(
-                      text: '8,640.00',
-                      style: GoogleFonts.workSans(
-                        color: AppColors.darkstheme,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  ),
+                  TextSpan(
+                    text: '8,640.00',
+                    style: GoogleFonts.workSans(
+                      color: AppColors.darkstheme,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(right: 25,bottom: 15,top: 12),
-          child: _buildEditButton(),
-        ),
+        _buildEditButton(),
       ],
-    );
-  }
+    ),
+  );
+}
 
-  Widget _buildEditButton() {
-    return Align(
-      alignment: Alignment.bottomRight,
-      child: Container(
-        height: 28,
-        width: 28,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.white),
-        ),
-        child: Center(
-          child: Image.asset(
-            AppIcons.editIcon,
-            fit: BoxFit.contain,
-          ),
-        ),
+Widget _buildEditButton() {
+  return Container(
+    height: 35,
+    width: 35,
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(12),
+      border: Border.all(color: Colors.white),
+    ),
+    child: Center(
+      child: Image.asset(
+        AppIcons.editIcon,
+        fit: BoxFit.contain,
       ),
-    );
-  }
+    ),
+  );
+}
+
 
   Widget _buildMenuList(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.only(left: 23,right: 25,bottom: 24),
+        padding: const EdgeInsets.all(8.0),
         child: ListView.separated(
           itemCount: 11,
           separatorBuilder: (context, index) =>  Divider(
@@ -303,17 +298,21 @@ class ProfileScreen extends StatelessWidget {
           color: Theme.of(context).colorScheme.surface,
         ),
       ),
-      trailing: Icon(
-        Icons.arrow_forward_ios,
-        color: Theme.of(context).colorScheme.surface,
-      ),
-      onTap: () {
+      trailing: GestureDetector(
+         onTap: () {
        Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileScreen1()));
       },
-    );
-  }
+    
+  
+        child: Image.asset(
+          AppIcons.arrowforwardIcon
+        )),
+        
+       
+      );
+     
 }
-
+}
 
 
 class ProfileScreen1 extends StatelessWidget {

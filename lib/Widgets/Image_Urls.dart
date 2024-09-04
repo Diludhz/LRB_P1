@@ -42,6 +42,7 @@ class AppIcons {
   static const String passwordIcon="assets/icons/ic_password.png";
   static const String deleteIcon="assets/icons/ic_delete.png";
   static const String femaleprofileIcon="assets/icons/ic_profilefemale.png";
+  static const String arrowforwardIcon="assets/icons/ic_rightarrow.png";
 
 
 }
