@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:p1/Widgets/Custom_Textfield.dart';
 import 'package:p1/Widgets/Image_Urls.dart';
 import 'package:p1/utils/AG_Container.dart';
@@ -17,33 +18,113 @@ class _PhonePageState extends State<PhonePage> {
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _otpController = TextEditingController();
   bool showOTPBoxes = false;
+  late String verificationId;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  void _sendOTP() {
-    setState(() {
-      showOTPBoxes = true;
-    });
+  void _sendOTP() async {
+    final phoneNumber = _phoneController.text.trim();
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          'OTP sent to your phone.',
-          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+    if (phoneNumber.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Please enter a valid phone number.',
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          ),
+          backgroundColor: AppColors.greentext,
         ),
-        backgroundColor: AppColors.greentext,
-      ),
+      );
+      return;
+    }
+
+    await _auth.verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        // Auto-retrieve or instant verification
+        await _auth.signInWithCredential(credential);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Phone number verified and signed in successfully!',
+              style: TextStyle(color: Theme.of(context).colorScheme.primary),
+            ),
+            backgroundColor: AppColors.greentext,
+          ),
+        );
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Verification failed: ${e.message}',
+              style: TextStyle(color: Theme.of(context).colorScheme.primary),
+            ),
+            backgroundColor: AppColors.greentext,
+          ),
+        );
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        this.verificationId = verificationId;
+        setState(() {
+          showOTPBoxes = true;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'OTP sent to your phone.',
+              style: TextStyle(color: Theme.of(context).colorScheme.primary),
+            ),
+            backgroundColor: AppColors.greentext,
+          ),
+        );
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
     );
   }
 
-  void _verifyOTP() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          'Phone number verified and signed in successfully!',
-          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+  void _verifyOTP() async {
+    final otp = _otpController.text.trim();
+
+    if (otp.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Please enter the OTP.',
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          ),
+          backgroundColor: AppColors.greentext,
         ),
-        backgroundColor: AppColors.greentext,
-      ),
+      );
+      return;
+    }
+
+    final credential = PhoneAuthProvider.credential(
+      verificationId: verificationId,
+      smsCode: otp,
     );
+
+    try {
+      await _auth.signInWithCredential(credential);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Phone number verified and signed in successfully!',
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          ),
+          backgroundColor: AppColors.greentext,
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Verification failed: ${e.toString()}',
+            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          ),
+          backgroundColor: AppColors.greentext,
+        ),
+      );
+    }
   }
 
   @override
@@ -83,7 +164,7 @@ class _PhonePageState extends State<PhonePage> {
                   padding: const EdgeInsets.all(8.0),
                   child: Pinput(
                     controller: _otpController,
-                    length: 5,
+                    length: 6,
                     showCursor: true,
                     animationCurve: Curves.bounceOut,
                     onChanged: (value) {},
@@ -109,7 +190,7 @@ class _PhonePageState extends State<PhonePage> {
               ],
               Container(
                 margin: const EdgeInsets.all(10),
-                width: 379,
+                width: double.infinity,
                 height: 56,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(

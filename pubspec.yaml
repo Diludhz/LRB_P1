@@ -45,6 +45,8 @@ dependencies:
   permission_handler: ^11.3.1
   path: ^1.9.0
   path_provider: ^2.1.4
+  firebase_auth: ^4.16.0
+  firebase_core: ^2.24.2
   
   
 

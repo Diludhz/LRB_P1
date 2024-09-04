@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:p1/Pages/Home_Page.dart';
@@ -5,10 +6,8 @@ import 'package:p1/Widgets/Custom_Button.dart';
 import 'package:p1/Widgets/Custom_Textfield.dart';
 import 'package:p1/Widgets/Image_Urls.dart';
 import 'package:p1/utils/AG_Container.dart';
-
 import 'package:p1/utils/Custom_Dividers.dart';
 import 'package:p1/utils/Colors.dart';
-
 import 'package:p1/utils/Not_Member.dart';
 
 class EmailPage extends StatefulWidget {
@@ -21,19 +20,32 @@ class EmailPage extends StatefulWidget {
 class _EmailPageState extends State<EmailPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  void _login() {
+  void _login() async {
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
 
-    if (email == "test@example.com" && password == "password123") {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Logged in successfully!'),
-          backgroundColor: AppColors.greentext,
-        ),
+    try {
+     
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
       );
-    } else {
+
+     
+      if (userCredential.user != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Logged in successfully!'),
+            backgroundColor: AppColors.greentext,
+          ),
+        );
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => const HomePage()));
+      }
+    } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Login failed. Incorrect email or password.'),
@@ -80,10 +92,7 @@ class _EmailPageState extends State<EmailPage> {
                 const SizedBox(height: 10),
                 eButton(
                     text: "Login",
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const HomePage()));
-                    },
+                    onTap: _login, 
                     context: context),
                 const SizedBox(height: 10),
                 customDivider(),
